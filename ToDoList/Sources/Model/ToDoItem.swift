@@ -8,7 +8,7 @@ struct ToDoItem: Equatable, Codable, Identifiable {
 
 // Ya
 enum ToDoProgress: Int {
-    case all
-    case done
-    case notDone
+    case all = 0
+    case done = 1
+    case notDone = 2
 }
