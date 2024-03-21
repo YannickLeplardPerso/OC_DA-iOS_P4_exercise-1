@@ -1,5 +1,7 @@
 import SwiftUI
 
+
+
 struct ToDoListView: View {
     @ObservedObject var viewModel: ToDoListViewModel
     @State private var newTodoTitle = ""
@@ -7,16 +9,27 @@ struct ToDoListView: View {
     @State private var isAddingTodo = false
     
     // New state for filter index
-    @State private var filterIndex = 0
+    @State private var filterIndex = ToDoProgress.all
     
     var body: some View {
         NavigationView {
             VStack {
                 // Filter selector
-                // TODO: - Add a filter selector which will call the viewModel for updating the displayed data
+                // Ya
+                Picker("", selection: $filterIndex) {
+                    Text("All").tag(ToDoProgress.all)
+                    Text("Done").tag(ToDoProgress.done)
+                    Text("Not Done").tag(ToDoProgress.notDone)
+                }
+                .pickerStyle(.segmented)
+                .padding()
                 // List of tasks
                 List {
-                    ForEach(viewModel.toDoItems) { item in
+                    ForEach(viewModel.toDoItems.filter( {
+                        filterIndex == .all
+                        || ($0.isDone == false && filterIndex == .notDone)
+                        || ($0.isDone == true && filterIndex == .done)
+                    })) { item in
                         HStack {
                             Button(action: {
                                 viewModel.toggleTodoItemCompletion(item)
@@ -26,14 +39,15 @@ struct ToDoListView: View {
                                     .frame(width: 25, height: 25)
                                     .foregroundColor(item.isDone ? .green : .primary)
                             }
+                            
                             Text(item.title)
                                 .font(item.isDone ? .subheadline : .body)
                                 .strikethrough(item.isDone)
                                 .foregroundColor(item.isDone ? .gray : .primary)
+                            }
                         }
-                    }
-                    .onDelete { indices in
-                        indices.forEach { index in
+                        .onDelete { indices in
+                            indices.forEach { index in
                             let item = viewModel.toDoItems[index]
                             viewModel.removeTodoItem(item)
                         }

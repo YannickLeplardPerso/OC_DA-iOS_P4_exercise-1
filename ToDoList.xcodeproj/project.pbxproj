@@ -67,10 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				2F90C7E02AC357C6005D888A /* ToDoListApp.swift */,
-				2F90C7E22AC357C6005D888A /* ToDoListView.swift */,
-				2F90C7F22AC358DB005D888A /* ToDoListViewModel.swift */,
-				2F90C7EE2AC357FC005D888A /* ToDoListRepository.swift */,
-				2F90C7F02AC358B4005D888A /* ToDoItem.swift */,
+				AC4414CC2BA9E81200DE0E5F /* Views */,
+				AC4414CB2BA9E7FD00DE0E5F /* Model */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -138,6 +136,24 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		AC4414CB2BA9E7FD00DE0E5F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2F90C7F02AC358B4005D888A /* ToDoItem.swift */,
+				2F90C7EE2AC357FC005D888A /* ToDoListRepository.swift */,
+				2F90C7F22AC358DB005D888A /* ToDoListViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AC4414CC2BA9E81200DE0E5F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2F90C7E22AC357C6005D888A /* ToDoListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -184,7 +200,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					2F5B3B702AC430FA0033E479 = {
 						CreatedOnToolsVersion = 14.2;
@@ -337,6 +353,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -397,6 +414,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
