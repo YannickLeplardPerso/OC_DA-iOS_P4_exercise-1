@@ -9,23 +9,22 @@ struct ToDoListView: View {
     @State private var isAddingTodo = false
     
     // New state for filter index
-    @State private var filterIndex = ToDoProgress.all
+    @State private var filterStatus = ToDoStatus.all
     
     var body: some View {
         NavigationView {
             VStack {
                 // Filter selector
-                // Ya
-                Picker("", selection: $filterIndex) {
-                    Text("All").tag(ToDoProgress.all)
-                    Text("Done").tag(ToDoProgress.done)
-                    Text("Not Done").tag(ToDoProgress.notDone)
+                Picker("", selection: $filterStatus) {
+                    Text("All").tag(ToDoStatus.all)
+                    Text("Done").tag(ToDoStatus.done)
+                    Text("Not Done").tag(ToDoStatus.notDone)
                 }
                 .pickerStyle(.segmented)
                 .padding()
                 // List of tasks
                 List {
-                    let items = viewModel.applyFilter(at: filterIndex.rawValue)
+                    let items = viewModel.applyFilter(at: filterStatus)
                     ForEach(items) { item in
                         HStack {
                             Button(action: {
@@ -41,10 +40,10 @@ struct ToDoListView: View {
                                 .font(item.isDone ? .subheadline : .body)
                                 .strikethrough(item.isDone)
                                 .foregroundColor(item.isDone ? .gray : .primary)
-                            }
                         }
-                        .onDelete { indices in
-                            indices.forEach { index in
+                    }
+                    .onDelete { indices in
+                        indices.forEach { index in
                             let item = viewModel.toDoItems[index]
                             viewModel.removeTodoItem(item)
                         }
@@ -56,7 +55,7 @@ struct ToDoListView: View {
                     HStack {
                         TextField("Enter Task Title", text: $newTodoTitle)
                             .padding(.leading)
-
+                        
                         Spacer()
                         
                         Button(action: {
@@ -98,7 +97,7 @@ struct ToDoListView: View {
                         .shadow(radius: 5)
                 }
                 .padding()
-
+                
             }
             .navigationBarTitle("To-Do List")
             .navigationBarItems(trailing: EditButton())

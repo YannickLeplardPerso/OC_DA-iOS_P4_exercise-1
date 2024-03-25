@@ -41,11 +41,11 @@ final class ToDoListViewModel: ObservableObject {
     }
 
     /// Apply the filter to update the list.
-    func applyFilter(at index: Int) -> [ToDoItem]  {
+    func applyFilter(at status: ToDoStatus) -> [ToDoItem]  {
         return toDoItems.filter( {
-            index == ToDoProgress.all.rawValue
-            || ($0.isDone == false && index == ToDoProgress.notDone.rawValue)
-            || ($0.isDone == true && index == ToDoProgress.done.rawValue)
+            status == .all
+            || ($0.isDone == false && status == .notDone)
+            || ($0.isDone == true && status == .done)
         })
     }
 }

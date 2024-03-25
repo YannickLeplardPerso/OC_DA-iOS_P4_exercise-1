@@ -6,9 +6,9 @@ struct ToDoItem: Equatable, Codable, Identifiable {
     var isDone: Bool = false
 }
 
-// Ya
-enum ToDoProgress: Int {
-    case all = 0
-    case done = 1
-    case notDone = 2
+// status of items : done or not
+enum ToDoStatus {
+    case all
+    case done
+    case notDone
 }
